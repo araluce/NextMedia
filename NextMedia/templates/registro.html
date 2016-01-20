@@ -1,0 +1,106 @@
+	{% extends "base.html" %}
+	{% block content %}
+
+	<div class="panel panel-default">
+        <div class="panel-heading">
+			<h3 class="panel-title">Registrarse en NextMedia <small>Es gratis!!</small></h3>
+		</div>
+		<div class="panel-body">
+			<form role="form" action="{% url 'registro' %}" method="post" name="registro" enctype="multipart/form-data" >{% csrf_token %}
+
+				<!--<div class="kv-avatar center-block" style="width:200px">
+			        <input id="avatar" name="I_perfil" type="file" class="file-loading">
+			    </div>
+			    <div id="kv-avatar-errors" class="center-block" style="width:800px;display:none"></div>-->
+			    {{ form_reg.I_perfil }}
+				{% if form_reg.I_perfil.errors %}
+					<p style="color:red;">{{ form_reg.I_perfil.errors }}</p>
+				{% endif %}
+				
+				<div class="input-group">
+					<span class="input-group-addon glyphicon glyphicon-user" id="basic-addon1"></span>
+					{{ form_reg.User }}
+					{% if form_reg.User.errors %}
+						<p style="color:red;">{{ form_reg.User.errors }}</p>
+					{% endif %}
+				</div>
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-md-6">
+						<div class="form-group">
+							{{ form_reg.Nombre }}
+						</div>
+						{% if form_reg.Nombre.errors %}
+							<p style="color:red;">{{ form_reg.Nombre.errors }}</p>
+						{% endif %}
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6">
+						<div class="form-group">
+							{{ form_reg.Apellidos }}
+						</div>
+						{% if form_reg.Apellidos.errors %}
+							<p style="color:red;">{{ form_reg.Apellidos.errors }}</p>
+						{% endif %}
+					</div>
+				</div>
+
+				<div class="input-group">
+					<span class="input-group-addon glyphicon glyphicon-envelope" id="basic-addon1"></span>
+					{{ form_reg.Email }}
+					{% if form_reg.Email.errors %}
+						<p style="color:red;">{{ form_reg.Email.errors }}</p>
+					{% endif %}
+				</div>
+
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-md-6">
+						<div class="form-group">
+							{{ form_reg.Password }}
+						</div>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6">
+						<div class="form-group">
+							{{ form_reg.Password }}
+	   					</div>
+	   				</div>
+	   				{% if form_reg.Password.errors %}
+						<p style="color:red;">{{ form_reg.Password.errors }}</p>
+					{% endif %}
+	   			</div>
+
+	   			<div class="input-group">
+	   				<span class="input-group-addon glyphicon glyphicon-credit-card" id="basic-addon1"></span>
+					{{ form_reg.Visa }}
+					{% if form_reg.Visa.errors %}
+						<p style="color:red;">{{ form_reg.Visa.errors }}</p>
+					{% endif %}
+				</div>
+
+				<div class='input-group date'>
+                    {{ form_reg.Fecha }}
+                    {% if form_reg.Fecha.errors %}
+						<p style="color:red;">{{ form_reg.Fecha.errors }}</p>
+					{% endif %}
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+
+			    <div class="input-group">
+	   				<span class="input-group-addon glyphicon glyphicon-home" id="basic-addon1"></span>
+					{{ form_reg.Direccion }}
+					{% if form_reg.Direccion.errors %}
+						<p style="color:red;">{{ form_reg.Direccion.errors }}</p>
+					{% endif %}
+				</div>
+
+				<p>{{ form_reg.Aceptacion }} Acepto los términos </p>
+				{% if form_reg.Aceptacion.errors %}
+					<p style="color:red;">{{ form_reg.Aceptacion.errors }}</p>
+				{% endif %}
+			    			
+	   			<input type="submit" value="Resgístrame ahora!" class="btn btn-info btn-block">
+		    		
+	   		</form>
+	   	</div>
+	</div>
+	{% endblock %}

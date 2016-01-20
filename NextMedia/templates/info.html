@@ -1,0 +1,60 @@
+	{% extends "base.html" %}
+	{% block content %}
+
+	<style>
+		.kv-avatar .file-preview-frame,.kv-avatar .file-preview-frame:hover {
+		    margin: 0;
+		    padding: 0;
+		    border: none;
+		    box-shadow: none;
+		    text-align: center;
+		}
+		.kv-avatar .file-input {
+		    display: table-cell;
+		    max-width: 220px;
+		}
+	</style>
+
+	<div class="panel panel-default">
+        <div class="panel-heading">
+      		<h3 class="panel-title">Información del usuario {{ usuario }}</h3>
+    	</div>
+    	<div class="panel-body">
+
+    		<div class="fileinput fileinput-new clearfix center-block" data-provides="fileinput">
+  				<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+  					<img src="/static/{{ datos.10 }}" alt="avatar">
+  				</div>
+			</div>
+
+			<address>
+			  <strong>Datos personales</strong><br>
+			  <p>Nombre: <small><strong>{{ datos.1 }}</strong></small></p>
+			  <p>Apellidos: <small><strong>{{ datos.2 }}</strong></small></p>
+			  <p>Fecha de nacimiento: <small><strong>{{ datos.4 }}/{{ datos.5 }}/{{ datos.6 }} </strong></small></p>
+			</address>
+
+			{% if privacidad %}
+				<address>
+				  <strong>Correo</strong><br>
+				  <a href="mailto:{{ email }}">{{ datos.3 }}</a>
+				</address>
+
+				<address>
+				  <p>Nº Cuenta: <small><strong>{{ datos.9 }}</strong></small></p>
+				</address>
+
+				<address>
+				  <strong>Dirección</strong><br>
+				  {{ datos.8 }}<br>
+				</address>
+			{% endif %}
+
+			<address>
+			  <strong>Número de videos subidos: </strong>
+			  {{ datos.11 }}<br>
+			</address>
+		</div>
+	</div>
+
+	{% endblock %}
