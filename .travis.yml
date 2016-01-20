@@ -9,6 +9,7 @@ install:
  - pip install pycco
  - sudo apt-get install mongodb
 
+script:
 # command to run tests
  - make test
 # command to doc
