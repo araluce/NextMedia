@@ -12,7 +12,6 @@ install:
 script:
  - make test
  - make doc
- - make run
 
 branches:
   - only:
