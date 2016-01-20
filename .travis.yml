@@ -7,7 +7,7 @@ install:
  - pip install -q Django==1.9
  - pip install -q wheel==0.24.0
  - pip install pycco
- - sudo apt-get install mongodb-server mongodb-dev
+ - sudo apt-get install mongodb-server mongodb-dev 
  - sudo apt-get install mongodb
 # command to run tests
 script:
