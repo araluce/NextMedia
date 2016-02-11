@@ -28,5 +28,10 @@ urlpatterns = [
     url(r'^editar/', views.editar, name='editar'),
     url(r'^info$', views.info, name='info'),
     url(r'^subir/', views.subir, name='subir'),
+    url(r'^directorio$', views.directorio, name='directorio'),
+    url(r'^like_video/$', views.like_video, name='like_video'),
+    url(r'^dislike_video/$', views.dislike_video, name='dislike_video'),
+    url(r'^visitas_usuarios/$', views.visitas_usuarios, name='visitas_usuarios'),
+    url(r'^estadisticas/', views.estadisticas, name='estadisticas'),
     url(r'^admin/', admin.site.urls),
 ]

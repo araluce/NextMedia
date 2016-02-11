@@ -24,4 +24,8 @@ class RegForm(forms.ModelForm):
 class VideoForm(forms.ModelForm):
 	class Meta:
 		model = Video
+		widgets = {
+			'titulo' : forms.TextInput(attrs={'placeholder': 'Título', 'class' : 'form-control'}),
+			'descripcion' : forms.Textarea(attrs={'placeholder': 'Introduce alguna descripción', 'class' : 'form-control'}),
+		}
 		fields = ('video', 'titulo', 'descripcion')
