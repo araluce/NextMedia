@@ -2,8 +2,8 @@
         {% block content %}
 
         <ul class="nav nav-tabs">
-            <li><a href="{% url 'info' %}?u={{usuario}}">Info</a></li>
-            <li class="active"><a href="{% url 'directorio' %}?u={{usuario}}">Contenido</a></li>
+            <li><a href="{% url 'info' %}?u={{value.usuario}}">Info</a></li>
+            <li class="active"><a href="{% url 'directorio' %}?u={{value.usuario}}">Contenido</a></li>
         </ul><br><br>
 
         {% for value in datos %}
@@ -23,6 +23,7 @@
                         <h3>{{ value.titulo}}</h3>
                         <h4>{{ value.Fecha}}</h4>
                         <p>{{ value.descripcion}}</p>
+                        <p><small>Por: <a href="{% url 'info' %}?u={{value.usuario}}">{{ value.usuario }}</a></small></p>
                         <span class="pull">
                             <div class="btn-group">
                                 <button type="button" id="l{{ value.video }}" name="{{ value.video }}" class="btn btn-default"><i class="glyphicon glyphicon-thumbs-up"></i></button>

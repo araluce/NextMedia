@@ -28,11 +28,9 @@ db = client.test_database
 usuarios = db['usuarios']
 videos = db['videos']
 
-contador_visitas = {}
-
 def index(request):
 	if 'username' in request.session:
-		return HttpResponseRedirect("/subir")
+		return render(request, 'index.html', {'form_log' : LoginForm(), 'lista_usu' : infousuarios(), 'lista_usu_comp' : infousuarios_comp(), 'datos' : videos_todos()})
 	return HttpResponseRedirect("/registro")
 
 def login(request):
@@ -173,7 +171,7 @@ def subir(request):
 				})
 				return render(request, 'subir.html', {'form_log' : LoginForm(), 'form_vid' : VideoForm(), 'alert' : 'Su vídeo se ha subido correctamente', 'lista_usu' : infousuarios(), 'lista_usu_comp' : infousuarios_comp()})
 		else:
-			return render(request, 'subir.html', {'form_log' : LoginForm(), 'form_vid' : VideoForm(), 'lista_usu' : infousuarios()})
+			return render(request, 'subir.html', {'form_log' : LoginForm(), 'form_vid' : VideoForm(), 'lista_usu' : infousuarios(), 'lista_usu_comp' : infousuarios_comp()})
 	return render(request, 'index.html', {'form_log' : LoginForm(), 'alert' : 'Inicia sesión para acceder a esta sección', 'lista_usu' : infousuarios(), 'lista_usu_comp' : infousuarios_comp()})
 def directorio(request):
 	usuario = request.GET.get('u', None)
@@ -212,12 +210,17 @@ def infousuarios_comp():
 	return lista_usu
 def videos(usuario):
 	x = db.videos.find({'usuario' : usuario},{"_id" : 0, "usuario": 1, "video" : 1, "titulo" : 1, "descripcion" : 1, "Fecha" : 1, "Likes" : 1, "Dislikes" : 1})
-	json = []
 	datos_finales = []
 	for doc in x:
 		datos_finales.append(doc)
-	for doc in datos_finales:
-		print 'Usuario: ' + doc['usuario'] + ' Video: ' + doc['video'] + ' titulo: ' +doc['titulo'] + ' descripcion: ' + doc['descripcion']
+	return datos_finales
+
+def videos_todos():
+	x = db.videos.find({},{"_id" : 0, "usuario": 1, "video" : 1, "titulo" : 1, "descripcion" : 1, "Fecha" : 1, "Likes" : 1, "Dislikes" : 1})
+	datos_finales = []
+	for doc in x:
+		datos_finales.append(doc)
+	print datos_finales
 	return datos_finales
 
 def info_videos(video):
@@ -340,6 +343,28 @@ def visitas_usuarios(request):
 	for x in usuarios:
 		datos[0].append(x[u'Usuario'])
 		datos[1].append(x[u'Visitas'])
+	return JsonResponse(datos, safe=False)
+
+def likes_videos(request):
+	params = request.GET
+	usuarios = db.videos.find({},{"_id":0, "titulo": 1, "Likes": 1})
+	datos={}
+	datos[0]=list()
+	datos[1]=list()
+	for x in usuarios:
+		datos[0].append(x[u'titulo'])
+		datos[1].append(x[u'Likes'])
+	return JsonResponse(datos, safe=False)
+
+def dislikes_videos(request):
+	params = request.GET
+	usuarios = db.videos.find({},{"_id":0, "titulo": 1, "Dislikes": 1})
+	datos={}
+	datos[0]=list()
+	datos[1]=list()
+	for x in usuarios:
+		datos[0].append(x[u'titulo'])
+		datos[1].append(x[u'Dislikes'])
 	return JsonResponse(datos, safe=False)
 
 def estadisticas (request):

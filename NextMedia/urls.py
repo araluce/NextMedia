@@ -32,6 +32,8 @@ urlpatterns = [
     url(r'^like_video/$', views.like_video, name='like_video'),
     url(r'^dislike_video/$', views.dislike_video, name='dislike_video'),
     url(r'^visitas_usuarios/$', views.visitas_usuarios, name='visitas_usuarios'),
+    url(r'^likes_videos/$', views.likes_videos, name='likes_videos'),
+    url(r'^dislikes_videos/$', views.dislikes_videos, name='dislikes_videos'),
     url(r'^estadisticas/', views.estadisticas, name='estadisticas'),
     url(r'^admin/', admin.site.urls),
 ]

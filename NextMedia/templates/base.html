@@ -60,7 +60,9 @@
                         {% if 'username' not in request.session %}
                             <li><a href="{% url 'registro' %}">Regístrate</a></li>
                         {% endif %}
-                        <li><a href="{% url 'estadisticas' %}">Estadísticas</a></li>
+                        {% if 'username' in request.session and request.session.username == 'admin' %}
+                            <li><a href="{% url 'estadisticas' %}">Estadísticas</a></li>
+                        {% endif %}
                     </ul>
                         {% if 'username' in request.session %}
                             <div class="navbar-form navbar-right dropdown" role="search">
@@ -100,7 +102,9 @@
                     {% for doc in lista_usu %}
                         {% for key, value in doc.items %}
                             <a href="{% url 'info' %}?u={{value}}" class="list-group-item">
-                                <img src="/static/{{ key }}" height="30px">
+                                {% if  key%}
+                                    <img src="/static/{{ key }}" height="30px">
+                                {% endif %}
                                 <strong>{{ value }}</strong>
                             </a>
                         {% endfor %}
@@ -144,7 +148,9 @@
                     {% for doc in lista_usu_comp %}
                         {% for key, value in doc.items %}
                             <a href="{% url 'info' %}?u={{value}}" class="list-group-item">
-                                <img src="/static/{{ key }}" height="30px">
+                                {% if  key%}
+                                    <img src="/static/{{ key }}" height="30px">
+                                {% endif %}
                                 <strong>{{ value }}</strong>
                             </a>
                         {% endfor %}
