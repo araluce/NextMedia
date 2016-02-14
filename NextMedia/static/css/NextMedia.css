@@ -1,0 +1,16 @@
+.footer{
+	background-color:#f8f8f8;
+	border-top-color:#e7e7e7;
+	border-top-width: 0 0 1px;
+	width: 100%;
+	/*position: absolute;
+    bottom: 0;
+    
+    left: 0;
+    height: 81px;*/
+}
+
+
+.image_perfil img{
+	max-height: 300px; 
+}
